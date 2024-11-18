@@ -1,0 +1,70 @@
+openapi: 3.0.3
+info:
+  title: Игра "5 Букв"
+  description: REST API для игры "5 Букв"
+  version: 1.0.11
+externalDocs:
+  description: Проект на GitHub 
+  url: https://github.com/cptntotoro/five-letters-game
+servers:
+  - url: http://localhost:8080
+tags:
+  - name: pages
+    description: REST для получения HTML страниц
+  - name: data
+    description: REST для получения данных
+paths:
+  /:
+    get:
+      tags:
+        - pages
+      summary: Получить главную страницу
+      description: Вовзращает index.html
+      operationId: getHomepage
+      responses:
+        '200':
+          description: OK
+          content:
+            application/html:
+              example: <!DOCTYPE html>
+                    <html lang="en">
+                      <head>
+                        <meta charset="UTF-8">
+                        <title>Title</title>
+                      </head>
+                      <body>
+                        <h1>Hello world</h1>
+                      </body>
+                    </html>
+        '404':
+          description: Страница не найдена
+        '500':
+          description: Ошибка сервера    
+          
+  /word:
+    get:
+      tags:
+        - data
+      summary: Получить случайное слово
+      description: Возвращает случайное слово и удаляет его из пула
+      operationId: getRandomWord
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WordDtoOutput'
+        '204':
+          description: Закончились слова в пуле       
+        '500':
+          description: Ошибка сервера    
+
+components:
+  schemas:
+    WordDtoOutput:
+      type: object
+      properties:
+        word:
+          type: string
+          example: ветка

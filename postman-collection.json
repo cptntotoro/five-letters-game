@@ -33,12 +33,12 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8080/",
+					"raw": "http://localhost:9090/",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "8080",
+					"port": "9090",
 					"path": [
 						""
 					]
@@ -61,6 +61,7 @@
 							"    const responseData = pm.response.json();\r",
 							"    pm.expect(responseData).to.be.an('object');\r",
 							"    pm.expect(responseData.word).to.exist;\r",
+							"    pm.expect(responseData.word.length).to.equal(5);\r",
 							"})\r",
 							"\r",
 							"pm.test('Word is a non-empty string', function () {\r",
@@ -86,12 +87,12 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8080/word",
+					"raw": "http://localhost:9090/word",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "8080",
+					"port": "9090",
 					"path": [
 						"word"
 					]

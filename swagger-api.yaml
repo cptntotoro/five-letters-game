@@ -7,7 +7,7 @@ externalDocs:
   description: Проект на GitHub 
   url: https://github.com/cptntotoro/five-letters-game
 servers:
-  - url: http://localhost:8080
+  - url: http://localhost:9090
 tags:
   - name: pages
     description: REST для получения HTML страниц
@@ -19,7 +19,7 @@ paths:
       tags:
         - pages
       summary: Получить главную страницу
-      description: Вовзращает index.html
+      description: Возвращает index.html
       operationId: getHomepage
       responses:
         '200':

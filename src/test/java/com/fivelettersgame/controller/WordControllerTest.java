@@ -26,7 +26,7 @@ public class WordControllerTest {
 
     @Test
     void getRandomWord_shouldReturnStatusOk() throws Exception {
-        Mockito.when(wordService.getRandom()).thenReturn(new Word("лента"));
+        Mockito.when(wordService.getRandom()).thenReturn(new Word("Р»РµРЅС‚Р°"));
 
         mockMvc.perform(get("/word")
                         .contentType(MediaType.APPLICATION_JSON)
@@ -36,7 +36,7 @@ public class WordControllerTest {
 
     @Test
     void getRandomWord_shouldReturnStatusNoContent() throws Exception {
-        Mockito.when(wordService.getRandom()).thenThrow(new OutOfWordsException("Поздравляем, вы отгадали все слова!"));
+        Mockito.when(wordService.getRandom()).thenThrow(new OutOfWordsException("РџРѕР·РґСЂР°РІР»СЏРµРј, РІС‹ РѕС‚РіР°РґР°Р»Рё РІСЃРµ СЃР»РѕРІР°!"));
 
         mockMvc.perform(get("/word")
                         .contentType(MediaType.APPLICATION_JSON)

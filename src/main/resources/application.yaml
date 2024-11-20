@@ -2,3 +2,6 @@ spring:
   web:
     resources:
       static-locations: classpath:/
+
+server:
+  port: 9090

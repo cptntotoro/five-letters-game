@@ -1,0 +1,145 @@
+:root {
+  --accent-color: #c1ef5d;
+  --disabled-color: #665e5e;
+  --hint-color: #fff;
+  --main-background-color: #222020;
+  --icon-color: #fff;
+}
+
+.page {
+  margin-block-start: 10px;
+  background-color: var(--main-background-color);
+}
+
+/* Логотип */
+.logo {
+  float: left;
+  margin-block-start: -10px;
+}
+
+/* Панель кнопок */
+.aside__toolbar {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  float: right;
+  gap: 41px;
+  margin-block-start: 20px;
+  margin-inline-end: 27px;
+}
+
+.aside__toolbar-button {
+  block-size: 45px;
+  aspect-ratio: 1/1;
+  color: var(--icon-color);
+  background: none no-repeat;
+  border: none;
+}
+
+.aside__toolbar-button-gift {
+  background-image: url(../images/gift.svg);
+}
+
+.aside__toolbar-button-info {
+  background-image: url(../images/info.svg);
+}
+
+.aside__toolbar-button-settings {
+  background-image: url(../images/settings.svg);
+}
+
+.aside__toolbar-button-link {
+  background-image: url(../images/link.svg);
+}
+
+/* Игровое поле */
+.game-board {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 13px;
+}
+
+.game-board__row {
+  display: flex;
+  flex-direction: row;
+  gap: 13px;
+}
+
+.game-board__cell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  block-size: 77px;
+  inline-size: 78px;
+  border-radius: 10px;
+  background: #19151500;
+  border: 5px solid #665e5e;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  font-size: clamp(0.875rem, -0.4251rem + 5.547vw, 3.125rem);
+}
+
+/* Клавиатура */
+.keyboard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 11px;
+  margin-block-start: 17px;
+}
+
+.keyboard__row {
+  display: flex;
+  gap: 4px;
+}
+
+.keyboard__button {
+  block-size: 58px;
+  inline-size: 53px;
+  border-radius: 10px;
+  background-color: var(--disabled-color);
+  background-repeat: no-repeat;
+  background-position: center;
+  border: 5px solid #000;
+  color: #fff;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+.keyboard__button:active {
+  background-color: #453f3f;
+}
+
+.keyboard__button-check {
+  border: 5px solid #fff;
+  background-image: url(../images/check.svg);
+}
+
+.keyboard__button-delete {
+  inline-size: 75px;
+  border: 5px solid #fff;
+  background-image: url(../images/delete.svg);
+}
+
+/* Цвета букв */
+
+/* Буква есть в слове и стоит на нужном месте */
+.cell-correct {
+  background-color: var(--accent-color);
+  color: var(--main-background-color);
+  border: none;
+}
+
+/* Буква есть в слове, но стоит не на своём месте */
+.cell-incorrect {
+  background-color: var(--disabled-color);
+  color: var(--hint-color);
+  border: none;
+}
+
+/* Буквы в слове нет */
+.cell-almost {
+  background-color: var(--hint-color);
+  color: var(--main-background-color);
+  border: none;
+}

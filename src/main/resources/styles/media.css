@@ -1,0 +1,111 @@
+/* Медиа-запрос для экранов шириной больше 1024px */
+@media (width >= 1024px) {
+  .game-board__cell {
+    block-size: 78px;
+    inline-size: 77px;
+  }
+}
+
+/* Медиа-запрос для экранов шириной меньше 768px */
+@media (width <= 768px) {
+  .page {
+    margin-block-start: 84px;
+  }
+
+  .logo__image {
+    padding-inline-start: 24px;
+  }
+
+  .game-board__cell {
+    block-size: calc(65px - (65 - 108) * ((100vw - 735px) / (768 - 735)));
+    inline-size: calc(70px - (70 - 100) * ((100vw - 735px) / (768 - 735)));
+  }
+
+  .game-board {
+    gap: 18px;
+  }
+
+  .game-board__row {
+    gap: 15px;
+  }
+}
+
+/* Медиа-запрос для экранов шириной меньше 735px */
+@media (width <= 735px) {
+  .page {
+    margin-block-start: 7px;
+  }
+
+  .aside__toolbar {
+    margin-block-start: 65px;
+  }
+
+  .game-board,
+  .game-board__row {
+    gap: 11px;
+  }
+
+  .game-board__cell {
+    block-size: calc(80px - (80 - 70) * ((100vw - 440px) / (735 - 440)));
+    inline-size: calc(70px - (70 - 65) * ((100vw - 440px) / (735 - 440)));
+  }
+
+  .keyboard__button:not(.keyboard__button-check, .keyboard__button-delete) {
+    block-size: calc(46px - (46 - 58) * ((100vw - 440px) / (735 - 440)));
+    inline-size: calc(34px - (34 - 53) * ((100vw - 440px) / (735 - 440)));
+    font-size: clamp(1.25rem, -0.6144rem + 6.7797vw, 2.5rem);
+  }
+}
+
+/* Медиа-запрос для экранов шириной меньше 600px */
+@media (width <= 600px) {
+  .content {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto 1fr;
+    grid-template-areas:
+      'logo aside__toolbar'
+      'game-board game-board';
+  }
+
+  .logo__image {
+    margin-block-start: 22px;
+  }
+  .game-board {
+    margin-block-start: 90px;
+  }
+
+  .aside__toolbar {
+    flex-direction: row;
+    margin-block-start: 12px;
+    gap: 8px;
+  }
+
+  .keyboard {
+    gap: 9px;
+  }
+
+  .keyboard__row {
+    gap: 3px;
+  }
+  .keyboard__button-delete {
+    inline-size: 49px;
+    block-size: 46px;
+  }
+
+  .keyboard__button-check {
+    inline-size: 57px;
+    block-size: 46px;
+  }
+}
+
+/* Медиа-запрос для экранов шириной меньше 440px */
+@media (width <= 440px) {
+  .keyboard {
+    gap: 9px;
+    margin-block-start: 80px;
+  }
+
+  .keyboard__row {
+    gap: 2px;
+  }
+}

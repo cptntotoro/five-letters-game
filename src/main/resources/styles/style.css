@@ -11,21 +11,29 @@
   background-color: var(--main-background-color);
 }
 
+.content {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  grid-template-rows: auto;
+  grid-template-areas: 'logo game-board aside__toolbar';
+}
+
 /* Логотип */
-.logo {
-  float: left;
-  margin-block-start: -10px;
+.logo__image {
+  grid-area: logo;
+  padding-inline-start: 10px;
 }
 
 /* Панель кнопок */
 .aside__toolbar {
   display: flex;
   flex-direction: column;
+  order: 3;
   align-items: flex-end;
-  float: right;
   gap: 41px;
   margin-block-start: 20px;
   margin-inline-end: 27px;
+  grid-area: aside__toolbar;
 }
 
 .aside__toolbar-button {
@@ -55,9 +63,9 @@
 /* Игровое поле */
 .game-board {
   display: flex;
-  flex-direction: column;
-  justify-content: center;
+  grid-area: game-board;
   align-items: center;
+  flex-direction: column;
   gap: 13px;
 }
 
@@ -71,38 +79,49 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  block-size: 77px;
-  inline-size: 78px;
+  block-size: calc(108px - (108 - 78) * ((100vw - 768px) / (1024 - 768)));
+  inline-size: calc(100px - (100 - 77) * ((100vw - 768px) / (1024 - 768)));
   border-radius: 10px;
   background: #19151500;
   border: 5px solid #665e5e;
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-  font-size: clamp(0.875rem, -0.4251rem + 5.547vw, 3.125rem);
+  font-size: 50px;
 }
 
 /* Клавиатура */
 .keyboard {
   display: flex;
   flex-direction: column;
-  align-items: center;
   gap: 11px;
   margin-block-start: 17px;
+  margin-inline: auto;
+  max-inline-size: fit-content;
 }
-
 .keyboard__row {
   display: flex;
   gap: 4px;
 }
+.keyboard__row:last-child {
+  justify-content: flex-end;
+  align-items: center;
+  width: 100%;
+}
 
 .keyboard__button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   block-size: 58px;
   inline-size: 53px;
   border-radius: 10px;
   background-color: var(--disabled-color);
   background-repeat: no-repeat;
   background-position: center;
+  background-size: 70% 70%;
   border: 5px solid #000;
   color: #fff;
+  font-size: 40px;
+  text-transform: uppercase;
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 }
 
@@ -132,14 +151,14 @@
 
 /* Буква есть в слове, но стоит не на своём месте */
 .cell-incorrect {
-  background-color: var(--disabled-color);
-  color: var(--hint-color);
+  background-color: var(--hint-color);
+  color: var(--main-background-color);
   border: none;
 }
 
 /* Буквы в слове нет */
 .cell-almost {
-  background-color: var(--hint-color);
-  color: var(--main-background-color);
+  background-color: var(--disabled-color);
+  color: var(--hint-color);
   border: none;
 }

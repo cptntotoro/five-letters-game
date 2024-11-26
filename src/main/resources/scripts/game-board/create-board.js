@@ -5,7 +5,7 @@ const boardSizeX = 5;
 const gameBoard = document.querySelector('.game-board');
 
 // Функция отрисовки игрового поля
-const createBoard = () => {
+export const createBoard = () => {
   for (let i = 0; i < boardSizeY; i++) {
     const row = document.createElement('ul');
     row.classList.add('game-board__row');
@@ -19,4 +19,4 @@ const createBoard = () => {
   }
 };
 
-createBoard();
+

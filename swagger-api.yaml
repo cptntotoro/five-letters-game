@@ -4,20 +4,22 @@ info:
   description: REST API для игры "5 Букв"
   version: 1.0.11
 externalDocs:
-  description: Проект на GitHub 
+  description: Проект на GitHub
   url: https://github.com/cptntotoro/five-letters-game
 servers:
   - url: http://localhost:9090
 tags:
-  - name: pages
+  - name: page
     description: REST для получения HTML страниц
-  - name: data
-    description: REST для получения данных
+  - name: word
+    description: REST для получения слов
+  - name: link
+    description: REST для получения ссылок
 paths:
   /:
     get:
       tags:
-        - pages
+        - page
       summary: Получить главную страницу
       description: Возвращает index.html
       operationId: getHomepage
@@ -27,24 +29,58 @@ paths:
           content:
             application/html:
               example: <!DOCTYPE html>
-                    <html lang="en">
-                      <head>
-                        <meta charset="UTF-8">
-                        <title>Title</title>
-                      </head>
-                      <body>
-                        <h1>Hello world</h1>
-                      </body>
-                    </html>
+                <html lang="en">
+                <head>
+                <meta charset="UTF-8">
+                <title>Title</title>
+                </head>
+                <body>
+                <h1>Hello world</h1>
+                </body>
+                </html>
         '404':
           description: Страница не найдена
         '500':
-          description: Ошибка сервера    
-          
+          description: Ошибка сервера
+
+  /share/{secret}:
+    get:
+      tags:
+        - page
+      summary: Получить главную страницу по ссылке "Поделиться"
+      description: Возвращает index.html
+      operationId: getHomepageByShareLink
+      parameters:
+        - name: secret
+          in: path
+          required: true
+          schema:
+            type: string
+          example: gainv
+      responses:
+        '200':
+          description: OK
+          content:
+            application/html:
+              example: <!DOCTYPE html>
+                <html lang="en">
+                <head>
+                <meta charset="UTF-8">
+                <title>Title</title>
+                </head>
+                <body>
+                <h1>Hello world</h1>
+                </body>
+                </html>
+        '404':
+          description: Страница не найдена
+        '500':
+          description: Ошибка сервера
+
   /word:
     get:
       tags:
-        - data
+        - word
       summary: Получить случайное слово
       description: Возвращает случайное слово и удаляет его из пула
       operationId: getRandomWord
@@ -56,9 +92,61 @@ paths:
               schema:
                 $ref: '#/components/schemas/WordDtoOutput'
         '204':
-          description: Закончились слова в пуле       
+          description: Закончились слова в пуле
         '500':
-          description: Ошибка сервера    
+          description: Ошибка сервера
+
+  /word/{secret}:
+    post:
+      tags:
+        - word
+      summary: Получить расшифрованное слово после перехода по ссылке "Поделиться"
+      description: Возвращает расшифрованное слово
+      operationId: getDecryptedWord
+      parameters:
+        - name: secret
+          in: path
+          required: true
+          schema:
+            type: string
+          example: gainv
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WordDtoOutput'
+        '400':
+          description: Неверный запрос
+        '500':
+          description: Ошибка сервера
+
+  /link/{word}:
+    get:
+      tags:
+        - link
+      summary: Загадать слово и получить ссылку "Поделиться"
+      description: Возвращает ссылку с загаданным словом
+      operationId: getShareLink
+      parameters:
+        - name: word
+          in: path
+          required: true
+          schema:
+            type: string
+          example: 'лента'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ShareLinkOutputDto'
+        '400':
+          description: Неверный запрос
+        '500':
+          description: Ошибка сервера
 
 components:
   schemas:
@@ -68,3 +156,10 @@ components:
         word:
           type: string
           example: ветка
+
+    ShareLinkOutputDto:
+      type: object
+      properties:
+        link:
+          type: string
+          example: "http://localhost:9090/share?secret=irasq"

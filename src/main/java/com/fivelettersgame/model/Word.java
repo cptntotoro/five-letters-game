@@ -1,13 +1,19 @@
 package com.fivelettersgame.model;
 
+/**
+ * Слово
+ */
 public class Word {
-    private final String word;
+    /**
+     * Значение слова
+     */
+    private final String value;
 
-    public Word(String word) {
-        this.word = word;
+    public Word(String value) {
+        this.value = value;
     }
 
-    public String getWord() {
-        return word;
+    public String getValue() {
+        return value;
     }
 }

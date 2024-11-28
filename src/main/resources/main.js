@@ -6,7 +6,7 @@ const logWord = async () => {
   if (data) {
     console.log(data.word);
   }
-}
+};
 
 createBoard();
 logWord();

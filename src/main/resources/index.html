@@ -14,7 +14,7 @@
   <link rel="stylesheet" href="./styles/style.css" />
   <link rel="stylesheet" href="./styles/animations.css" />
   <link rel="stylesheet" href="./styles/media.css" />
-
+  <link rel="stylesheet" href="./styles/overlays.css" />
 </head>
 
 <body class="page">
@@ -38,10 +38,13 @@
           aria-label="Поделиться ссылкой на игру"></button>
       </aside>
 
+      <!-- Подсказка для ввода существительного -->
+      <div class="hint-error__container">
+        <p class="hint-error__text">Необходимо ввести существительное</p>
+      </div>
 
       <!-- Игровое поле -->
-      <section class="game-board">
-      </section>
+      <section class="game-board"></section>
     </div>
 
     <!-- Клавиатура -->
@@ -127,7 +130,7 @@
 
       <ul class="keyboard__row">
         <li class="keyboard__item">
-          <button class="keyboard__button keyboard__button-check" type="button"></button>
+          <button class="keyboard__button keyboard__button-check " type="button"></button>
         </li>
         <li class="keyboard__item">
           <button class="keyboard__button" type="button">я</button>

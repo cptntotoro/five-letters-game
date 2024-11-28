@@ -1,53 +1,125 @@
-/* Медиа-запрос для экранов шириной больше 1024px */
-@media (width >= 1024px) {
-  .game-board__cell {
-    block-size: 78px;
-    inline-size: 77px;
-  }
-}
-
 /* Медиа-запрос для экранов шириной меньше 768px */
 @media (width <= 768px) {
-  .page {
-    margin-block-start: 84px;
+  .content {
+    grid-template-areas:
+      'logo logo logo'
+      '. game-board aside__toolbar';
+    grid-template-rows: 74px auto;
+    justify-items: start;
+  }
+
+  .content__hint-error-visible {
+    grid-template-areas:
+      'logo  hint-error  hint-error'
+      '. game-board aside__toolbar';
+    grid-template-columns: auto;
+    gap: 0;
+  }
+
+  .content__hint-error-visible .hint-error__container {
+    justify-self: start;
+    padding-inline-end: 72px;
+  }
+  .content__hint-error-visible .game-board {
+    align-items: flex-start;
   }
 
   .logo__image {
-    padding-inline-start: 24px;
-  }
-
-  .game-board__cell {
-    block-size: calc(65px - (65 - 108) * ((100vw - 735px) / (768 - 735)));
-    inline-size: calc(70px - (70 - 100) * ((100vw - 735px) / (768 - 735)));
+    padding-inline: 15px;
   }
 
   .game-board {
     gap: 18px;
+    padding-inline-start: 69px;
   }
 
   .game-board__row {
     gap: 15px;
   }
+
+  .game-board__cell {
+    inline-size: 100px;
+    block-size: 108px;
+  }
+
+  .keyboard__row {
+    padding-inline-start: 0;
+  }
 }
 
 /* Медиа-запрос для экранов шириной меньше 735px */
 @media (width <= 735px) {
-  .page {
-    margin-block-start: 7px;
+  .content {
+    grid-template-areas: 'logo game-board aside__toolbar';
+    grid-template-rows: auto;
+  }
+
+  .content__hint-error-visible {
+    grid-template-areas:
+      'logo game-board aside__toolbar aside__toolbar'
+      'hint-error game-board aside__toolbar aside__toolbar';
+    grid-template-columns: minmax(100px, 175px) 3fr auto 0;
+  }
+
+  .content__hint-error-visible .hint-error__container {
+    margin-inline: 8px 19px;
+    padding-inline: 8px 0;
+    padding-block: 8px 10px;
+  }
+
+  .content__hint-error-visible .hint-error__text {
+    font-size: 15px;
+  }
+
+  .content__hint-error-visible .logo__image {
+    padding-inline-end: 91px;
+  }
+
+  .content__hint-error-visible .game-board__row {
+    justify-content: flex-end;
+    align-items: flex-start;
+  }
+
+  .content__hint-error-visible .aside__toolbar {
+    padding-block-start: 0;
+  }
+
+  .content__hint-error-visible .game-board,
+  .game-board__row {
+    inline-size: auto;
+  }
+
+  .content__hint-error-visible .game-board {
+    padding-inline-end: 20px;
+  }
+
+  .logo_container {
+    padding-inline-start: 0;
+  }
+
+  .logo__image {
+    padding-inline-start: 17px;
+    padding-block: 12px 18px;
   }
 
   .aside__toolbar {
-    margin-block-start: 65px;
+    margin-block-start: 60px;
+    padding-block-start: 0;
+  }
+  .game-board {
+    padding: 0;
   }
 
   .game-board,
   .game-board__row {
     gap: 11px;
+    inline-size: 100%;
+    justify-content: center;
   }
 
   .game-board__cell {
-    block-size: calc(80px - (80 - 70) * ((100vw - 440px) / (735 - 440)));
-    inline-size: calc(70px - (70 - 65) * ((100vw - 440px) / (735 - 440)));
+    inline-size: 70px;
+    block-size: 65px;
   }
 
   .keyboard__button:not(.keyboard__button-check, .keyboard__button-delete) {
@@ -67,16 +139,54 @@
       'game-board game-board';
   }
 
+  .content__hint-error-visible {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto 31px 60px 15px 1fr;
+    grid-template-areas:
+      'logo aside__toolbar'
+      '. .'
+      'hint-error hint-error'
+      '. .'
+      'game-board game-board';
+  }
+
+  .content__hint-error-visible .hint-error__container {
+    block-size: 100%;
+    align-items: center;
+    padding-inline-end: 40px;
+  }
+
+  .content__hint-error-visible .game-board {
+    margin: 0;
+    padding: 0;
+  }
+
+  .content__hint-error-visible .game-board,
+  .game-board__row {
+    inline-size: 100%;
+  }
+
+  .content__hint-error-visible .game-board__row {
+    justify-content: center;
+  }
+
+  .content__hint-error-visible .logo_container {
+    inline-size: 100%;
+    margin-block-end: -24px;
+    padding-inline: 0;
+  }
+
   .logo__image {
     margin-block-start: 22px;
   }
   .game-board {
-    margin-block-start: 90px;
+    margin-block-start: 105px;
   }
 
   .aside__toolbar {
     flex-direction: row;
-    margin-block-start: 12px;
+    margin-block-start: 50px;
+    align-items: center;
     gap: 8px;
   }
 
@@ -100,8 +210,41 @@
 
 /* Медиа-запрос для экранов шириной меньше 440px */
 @media (width <= 440px) {
+  .content__hint-error-visible .hint-error__container {
+    margin-inline-start: 17px;
+  }
+  .content__hint-error-visible .game-board__row {
+    padding-inline: 0;
+    gap: 13px;
+  }
+  .logo__image {
+    margin-block-start: 0;
+    padding-inline-start: 6px;
+    padding-block-start: 7px;
+  }
+
+  .aside__toolbar {
+    align-items: flex-start;
+    margin: 0;
+    padding: 0;
+    gap: 10px;
+  }
+  .game-board {
+    padding: 0;
+    margin-block-start: 82px;
+  }
+
+  .game-board__cell {
+    inline-size: 70px;
+    block-size: 80px;
+  }
+
+  .game-board__row {
+    justify-content: center;
+    gap: 13px;
+  }
+
   .keyboard {
-    gap: 9px;
     margin-block-start: 80px;
   }
 

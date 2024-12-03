@@ -20,12 +20,27 @@
     justify-self: start;
     padding-inline-end: 72px;
   }
+
   .content__hint-error-visible .game-board {
     align-items: flex-start;
   }
 
+  .popup {
+    left: 0;
+    bottom: 39%;
+    padding: 44px 10px 46px 8px;
+  }
+
+  .toast {
+    bottom: 26%;
+  }
+
   .logo__image {
     padding-inline: 15px;
+  }
+
+  .aside__toolbar {
+    padding-block-start: 30px;
   }
 
   .game-board {
@@ -91,6 +106,19 @@
 
   .content__hint-error-visible .game-board {
     padding-inline-end: 20px;
+  }
+
+  .popup {
+    left: 1%;
+    bottom: 32%;
+    max-inline-size: 436px;
+    max-block-size: 235px;
+    padding: 28px 1px 27px 5px;
+  }
+
+  .toast {
+    left: 0%;
+    bottom: 0%;
   }
 
   .logo_container {
@@ -175,6 +203,13 @@
     margin-block-end: -24px;
     padding-inline: 0;
   }
+  .popup {
+    inline-size: 89%;
+    padding-inline: 0;
+  }
+  .popup::backdrop {
+    padding-inline: 22px;
+  }
 
   .logo__image {
     margin-block-start: 22px;
@@ -213,22 +248,30 @@
   .content__hint-error-visible .hint-error__container {
     margin-inline-start: 17px;
   }
+
   .content__hint-error-visible .game-board__row {
     padding-inline: 0;
     gap: 13px;
   }
+
   .logo__image {
     margin-block-start: 0;
     padding-inline-start: 6px;
     padding-block-start: 7px;
   }
 
+  .toast {
+    left: 2%;
+    bottom: 77%;
+  }
+
   .aside__toolbar {
     align-items: flex-start;
     margin: 0;
     padding: 0;
-    gap: 10px;
+    gap: 0;
   }
+
   .game-board {
     padding: 0;
     margin-block-start: 82px;

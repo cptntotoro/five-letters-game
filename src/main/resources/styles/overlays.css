@@ -1,3 +1,4 @@
+/* Подсказка для ввода существительного */
 .hint-error__container {
   visibility: hidden;
   position: absolute;
@@ -19,9 +20,79 @@
   word-break: break-word;
 }
 
-/* Показать ошибку ввода */
+/* Показать ошибку ввода, также к content необходимо 
+добавлять дополнительный класс content__hint-error-visible */
 .hint-error__container-visible {
   display: flex;
   visibility: visible;
   opacity: 1;
+}
+
+/* Попап с правилами игры */
+.popup {
+  inline-size: 460px;
+  bottom: 51%;
+  left: 4%;
+  max-block-size: 270px;
+  padding: 42px 12px 32px 6px;
+  border-radius: 10px;
+  border: none;
+  opacity: 0;
+  background: rgba(255, 255, 255, 0.9);
+  transition: display 0.5s allow-discrete, overlay 0.5s allow-discrete,
+    opacity 0.5s;
+}
+
+.popup__text {
+  color: black;
+  font-size: 25px;
+  line-height: 119.5%;
+  word-break: break-word;
+}
+
+.page:has(.popup:popover-open) {
+  pointer-events: none;
+}
+
+.popup:popover-open {
+  pointer-events: auto;
+}
+
+.popup::backdrop {
+  background-color: rgba(0, 0, 0, 0.7);
+  opacity: 0;
+  transition: display 0.5s allow-discrete, overlay 0.5s allow-discrete,
+    opacity 0.5s;
+}
+
+:popover-open,
+:popover-open::backdrop {
+  opacity: 1;
+}
+
+@starting-style {
+  :popover-open,
+  :popover-open::backdrop {
+    opacity: 0;
+  }
+}
+
+/* Временный тост */
+.toast {
+  background-color: rgba(0, 0, 0, 0.6);
+  border-radius: 10px;
+  border: none;
+  padding: 23px 61px;
+  bottom: 17%;
+  left: 4%;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.5s, visibility 0.5s;
+  animation: showToast 2s forwards;
+}
+
+.toast__text {
+  color: #fff;
+  font-size: 25px;
+  line-height: 82.5%;
 }

@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="UTF-8">
-  <title>5 букв</title>
+  <title>Загадать слово другу</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="icon" href="./images/favicon/favicon.ico" sizes="any">
   <link rel="icon" href="./images/favicon/favicon.svg" type="image/svg+xml">
@@ -15,12 +15,13 @@
   <link rel="stylesheet" href="./styles/animations.css" />
   <link rel="stylesheet" href="./styles/overlays.css" />
   <link rel="stylesheet" href="./styles/media.css" />
+  <link rel="stylesheet" href="./styles/share-world.css">
 </head>
 
 <body class="page">
   <main class="main">
 
-    <div class="content">
+    <div class="content ">
 
       <!-- Логотип -->
       <div class="logo_container">
@@ -32,11 +33,9 @@
       <aside class="aside__toolbar ">
         <button class="aside__toolbar-button aside__toolbar-button-gift" type="button"
           aria-label="Загадать слово другу">
-          <a href="./share-word.html" target="_blank">
-            <svg viewBox="0 0 46 46" aria-hidden="true">
-              <use href="./images/contact-book.svg#icon-contact-book"></use>
-            </svg>
-          </a>
+          <svg viewBox="0 0 46 46" aria-hidden="true">
+            <use href="./images/contact-book.svg#icon-contact-book"></use>
+          </svg>
           <span class="visually-hidden">Загадать слово другу</span>
         </button>
         <button class="aside__toolbar-button aside__toolbar-button-info" type="button" aria-label="Информация об игре"
@@ -52,10 +51,17 @@
           </svg>
           <span class="visually-hidden">Настройки</span>
         </button>
+        <button class="aside__toolbar-button aside__toolbar-button-link" type="button"
+          aria-label="Поделиться ссылкой на игру" popovertarget="toast__link">
+          <svg viewBox="0 0 46 46" aria-hidden="true">
+            <use href="./images/link.svg#icon-link"></use>
+          </svg>
+          <span class="visually-hidden">Поделиться ссылкой на игру</span>
+        </button>
       </aside>
 
       <!-- Подсказка для ввода существительного -->
-      <div class="hint-error__container hint-error__noun ">
+      <div class="hint-error__container hint-error__noun">
         <p class="hint-error__text">Необходимо ввести существительное</p>
       </div>
 
@@ -71,13 +77,18 @@
           Белый цвет - буква угадана, но стоит не в том месте </p>
       </div>
 
+      <!-- Временный тост  -->
+      <div class="toast toast__link" id="toast__link" popover>
+        <p class="toast__text">Ссылка скопирована</p>
+      </div>
+
       <!-- Лоадер  -->
       <div class="loader__container">
         <span class="loader__element"></span>
       </div>
 
       <!-- Игровое поле -->
-      <section class="game-board" data-columns="5" data-rows="6"></section>
+      <section class="game-board" data-columns="5" data-rows="1"></section>
     </div>
 
     <!-- Клавиатура -->

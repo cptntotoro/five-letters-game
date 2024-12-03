@@ -1,8 +1,8 @@
-// Размеры игрового поля
-const boardSizeY = 6;
-const boardSizeX = 5;
-
 const gameBoard = document.querySelector('.game-board');
+
+// Размеры игрового поля
+const boardSizeY = gameBoard.dataset.rows;
+const boardSizeX = gameBoard.dataset.columns;
 
 // Функция отрисовки игрового поля
 export const createBoard = () => {
@@ -17,6 +17,7 @@ export const createBoard = () => {
       cell.classList.add('game-board__cell');
       input.classList.add('game-board__input');
       input.setAttribute('maxlength', '1');
+      input.setAttribute('aria-label', `Введите букву`);
 
       row.appendChild(cell);
       cell.appendChild(input);

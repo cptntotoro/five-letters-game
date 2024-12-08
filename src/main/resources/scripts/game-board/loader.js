@@ -3,14 +3,10 @@ export function renderLoading(isLoading) {
   const gameBoard = document.querySelector('.game-board');
   const toolbar = document.querySelector('.aside__toolbar');
   const loader = document.querySelector('.loader__container');
+  const gameResult = document.querySelector('.game-result');
 
-  if (isLoading) {
-    loader.classList.add('show');
-    gameBoard.classList.add('hidden');
-    toolbar.classList.add('hidden');
-  } else {
-    loader.classList.remove('show');
-    gameBoard.classList.remove('hidden');
-    toolbar.classList.remove('hidden');
-  }
+  loader.classList.toggle('invisible', !isLoading);
+  gameBoard.classList.toggle('invisible', isLoading);
+  toolbar.classList.toggle('invisible', isLoading);
+  gameResult.classList.toggle('invisible', isLoading);
 }

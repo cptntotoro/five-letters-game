@@ -4,10 +4,12 @@
   box-sizing: border-box;
 }
 
-body {
+.page {
+  padding-block-start: 10px;
+  background-color: var(--main-background-color);
   min-inline-size: 375px;
   max-inline-size: 1024px;
-  min-block-size: 100dvb;
+  min-block-size: 100%;
   margin: 0 auto;
   font-family: 'KellySlab', Arial, sans-serif;
 }

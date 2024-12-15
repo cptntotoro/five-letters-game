@@ -1,15 +1,10 @@
 :root {
   --accent-color: #c1ef5d;
-  --disabled-color: #665e5e;
+  --disabled-color: #a39898;
   --hint-color: #fff;
   --error-color: #cf3f3f;
-  --main-background-color: #222020;
+  --main-background-color: #191616;
   --icon-color: #fff;
-}
-
-.page {
-  padding-block-start: 10px;
-  background-color: var(--main-background-color);
 }
 
 .content {
@@ -18,7 +13,8 @@
   grid-template-rows: auto;
   justify-items: center;
   grid-template-areas: 'logo game-board aside__toolbar';
-  max-width: 100%;
+  max-inline-size: 100%;
+  min-inline-size: 440px;
   position: relative;
 }
 
@@ -35,12 +31,14 @@
 }
 
 /* Логотип */
-.logo_container {
+.logo__container {
   grid-area: logo;
-  padding-inline-start: 10px;
+  padding-inline-start: 7px;
 }
 
 .logo__image {
+  width: 48px;
+  height: 40px;
   transition: filter 0.5s;
 }
 
@@ -111,7 +109,7 @@
   inline-size: 100%;
   background-color: transparent;
   outline: none;
-  border: 5px solid #665e5e;
+  border: 5px solid #a39898;
   border-radius: 10px;
   text-align: center;
   font-family: 'KellySlab', Arial, sans-serif;
@@ -128,6 +126,7 @@
   margin-block-start: 17px;
   margin-inline: auto;
   max-inline-size: fit-content;
+  min-block-size: 155px;
 }
 .keyboard__row {
   display: flex;
@@ -150,35 +149,49 @@
   background-color: var(--disabled-color);
   background-repeat: no-repeat;
   background-position: center;
-  background-size: 70% 70%;
   border: 5px solid #000;
-  color: #fff;
+  color: #000;
   font-size: 40px;
   text-transform: uppercase;
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 }
 
 .keyboard__button:hover {
-  background-color: #565050;
+  background-color: #7b7575;
 }
 
 .keyboard__button:active {
-  background-color: #453f3f;
+  background-color: #625b5b;
 }
 
 .keyboard__button-check {
-  border: 5px solid #fff;
   background-image: url(../images/check.svg);
 }
 
-/* Заблокированное состояние кнопки  */
+/* Заблокированное состояние кнопки check  */
 .keyboard__button-check-disabled {
   opacity: 0.4;
+  pointer-events: none;
+}
+
+/* Активное состояние кнопки check  */
+.keyboard__button-check-enabled {
+  background-color: var(--accent-color);
+  border: currentColor;
+}
+
+.keyboard__button-check-enabled:hover {
+  background-color: #96b94b;
+}
+
+.keyboard__button-check-enabled:active {
+  background-color: #76913c;
 }
 
 .keyboard__button-delete {
   inline-size: 75px;
-  border: 5px solid #fff;
+  background-size: 70% 70%;
+
   background-image: url(../images/delete.svg);
 }
 
@@ -213,15 +226,17 @@
 }
 
 /* Лоадер  */
-
 .loader__container {
   display: flex;
-  visibility: hidden;
+  visibility: visible;
   position: absolute;
   width: 100%;
   height: 100%;
   justify-content: center;
   align-items: center;
+}
+.loader__container.invisible .loader__element {
+  animation-play-state: paused;
 }
 
 .loader__element {
@@ -229,16 +244,6 @@
   inline-size: 203px;
   block-size: 194px;
   animation: loaderRotate 1s infinite linear;
-}
-
-/* Показать элемент*/
-.show {
-  visibility: visible;
-}
-
-/* Скрыть элемент*/
-.hidden {
-  visibility: hidden;
 }
 
 .visually-hidden {
@@ -252,4 +257,86 @@
   overflow: hidden;
   clip-path: inset(50%);
   white-space: nowrap;
+}
+
+/* Окно результата игры */
+.game-result {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  inline-size: 100%;
+  block-size: calc(100dvb - 10px);
+}
+
+.game-result__content {
+  block-size: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-block-end: 90px;
+  padding-inline-end: 50px;
+}
+
+.game-result__stars {
+  display: flex;
+  gap: 4px;
+  padding-block-end: 38px;
+  align-items: flex-end;
+}
+
+.game-result__star {
+  color: #665e5e;
+  inline-size: 111px;
+  block-size: 103px;
+  transition: filter 0.3s;
+}
+
+.game-result__star-lose {
+  color: #cf3f3f;
+}
+
+.game-result__star-win {
+  color: #c1ef5d;
+}
+
+.game-result__text {
+  color: var(--icon-color);
+  font-size: 50px;
+  text-align: center;
+}
+
+.game-result__container-button {
+  inline-size: 100%;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  padding: 0 8px 24px;
+}
+
+.game-result__button {
+  padding: 10px 30px 8px 29px;
+  background-color: #665e5e;
+  color: var(--icon-color);
+  font-size: 40px;
+  border-radius: 10px;
+  border: none;
+}
+
+.game-result__button:hover {
+  background-color: #7b7575;
+}
+
+.game-result__button:active {
+  background-color: #625b5b;
+}
+
+/* Скрыть элемент с сохранением места на странице */
+.invisible {
+  visibility: hidden;
+  animation-play-state: paused;
+}
+
+/* Полностью скрыть элемент */
+.hidden {
+  display: none;
 }

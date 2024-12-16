@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description"
+    content="Загадайте слово в игре '5 букв' и поделитесь ссылкой, чтобы ваш друг попытался его отгадать.">
+
+  <title>Загадать слово другу</title>
+
+  <link rel="icon" href="./images/favicon/favicon.ico" sizes="any">
+  <link rel="icon" href="./images/favicon/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="./images/favicon/favicon.png">
+  <link rel="preload" href="./images/logo.svg" as="image" type="image/svg+xml" />
+
+  <link rel="stylesheet" href="./fonts/fonts.css" />
+  <link rel="stylesheet" href="./styles/globals.css" />
+  <link rel="stylesheet" href="./styles/style.css" />
+  <link rel="stylesheet" href="./styles/animations.css" />
+  <link rel="stylesheet" href="./styles/overlays.css" />
+  <link rel="stylesheet" href="./styles/media.css" />
+  <link rel="stylesheet" href="./styles/share-world.css">
+</head>
+
+<body class="page">
+  <main class="main">
+
+    <div class="content ">
+
+      <!-- Логотип -->
+      <div class="logo__container">
+        <a class="logo__link" href="./index.html" aria-label="Вернуться на главную страницу">
+          <img src="./images/logo.svg" alt="Логотип 5 букв" class="logo__image">
+        </a>
+      </div>
+
+      <!-- Панель кнопок -->
+      <aside class="aside__toolbar ">
+        <button class="aside__toolbar-button aside__toolbar-button-gift" type="button"
+          aria-label="Загадать слово другу">
+          <svg viewBox="0 0 46 46" aria-hidden="true">
+            <use href="./images/contact-book.svg#icon-contact-book"></use>
+          </svg>
+          <span class="visually-hidden">Загадать слово другу</span>
+        </button>
+        <button class="aside__toolbar-button aside__toolbar-button-info" type="button" aria-label="Информация об игре"
+          popovertarget="popup__info">
+          <svg viewBox="0 0 46 46" aria-hidden="true">
+            <use href="./images/info.svg#icon-info"></use>
+          </svg>
+          <span class="visually-hidden">Информация об игре</span>
+        </button>
+        <button class="aside__toolbar-button aside__toolbar-button-settings" type="button" aria-label="Настройки">
+          <svg viewBox="0 0 46 46" aria-hidden="true">
+            <use href="./images/settings.svg#icon-settings"></use>
+          </svg>
+          <span class="visually-hidden">Настройки</span>
+        </button>
+        <button class="aside__toolbar-button aside__toolbar-button-link" type="button"
+          aria-label="Поделиться ссылкой на игру" popovertarget="toast__link">
+          <svg viewBox="0 0 46 46" aria-hidden="true">
+            <use href="./images/link.svg#icon-link"></use>
+          </svg>
+          <span class="visually-hidden">Поделиться ссылкой на игру</span>
+        </button>
+      </aside>
+
+      <!-- Подсказка для ввода существительного -->
+      <div class="hint-error__container hint-error__noun">
+        <p class="hint-error__text">Необходимо ввести существительное</p>
+      </div>
+
+      <!-- Подсказка с ошибкой сервера -->
+      <div class="hint-error__container hint-error__server">
+        <p class="hint-error__text">Ошибка сервера. Перезагрузите страницу.</p>
+      </div>
+
+      <!-- Попап с правилами игры  -->
+      <div class="popup" id="popup__info" popover>
+        <p class="popup__text">Необходимо угадать загаданное слово за 6 попыток.<br>
+          Зелёный цвет - буква угадана и стоит на правильном месте<br>
+          Белый цвет - буква угадана, но стоит не в том месте </p>
+      </div>
+
+      <!-- Временный тост  -->
+      <div class="toast toast__link" id="toast__link" popover>
+        <p class="toast__text">Ссылка скопирована</p>
+      </div>
+
+      <!-- Лоадер  -->
+      <div class="loader__container invisible">
+        <span class="loader__element"></span>
+      </div>
+
+      <!-- Игровое поле -->
+      <section class="game-board" data-columns="5" data-rows="1"></section>
+    </div>
+
+    <!-- Клавиатура -->
+    <article class="keyboard">
+      <ul class="keyboard__row">
+        <li class="keyboard__item">
+          <button class="keyboard__button" type="button">й</button>
+        </li>
+        <li class="keyboard__item">
+          <button class="keyboard__button" type="button">ц</button>
+        </li>
+        <li class="keyboard__item">
+          <button class="keyboard__button" type="button">у</button>
+        </li>
+        <li class="keyboard__item">
+          <button class="keyboard__button" type="button">к</button>
+        </li>
+        <li class="keyboard__item">
+          <button class="keyboard__button" type="button">е</button>
+        </li>
+        <li class="keyboard__item">
+          <button class="keyboard__button" type="button">н</button>
+        </li>
+        <li class="keyboard__item">
+          <button class="keyboard__button" type="button">г</button>
+        </li>
+        <li class="keyboard__item">
+          <button class="keyboard__button" type="button">ш</button>
+        </li>
+        <li class="keyboard__item">
+          <button class="keyboard__button" type="button">щ</button>
+        </li>
+        <li class="keyboard__item">
+          <button class="keyboard__button" type="button">з</button>
+        </li>
+        <li class="keyboard__item">
+          <button class="keyboard__button" type="button">х</button>
+        </li>
+        <li class="keyboard__item">
+          <button class="keyboard__button" type="button">ъ</button>
+        </li>
+      </ul>
+
+      <ul class="keyboard__row">
+
+        <li class="keyboard__item">
+          <button class="keyboard__button" type="button">ф</button>
+        </li>
+        <li class="keyboard__item">
+          <button class="keyboard__button" type="button">ы</button>
+        </li>
+        <li class="keyboard__item">
+          <button class="keyboard__button" type="button">в</button>
+        </li>
+        <li class="keyboard__item">
+          <button class="keyboard__button" type="button">а</button>
+        </li>
+        <li class="keyboard__item">
+          <button class="keyboard__button" type="button">п</button>
+        </li>
+        <li class="keyboard__item">
+          <button class="keyboard__button" type="button">р</button>
+        </li>
+        <li class="keyboard__item">
+          <button class="keyboard__button" type="button">о</button>
+        </li>
+        <li class="keyboard__item">
+          <button class="keyboard__button" type="button">л</button>
+        </li>
+        <li class="keyboard__item">
+          <button class="keyboard__button" type="button">д</button>
+        </li>
+        <li class="keyboard__item">
+          <button class="keyboard__button" type="button">ж</button>
+        </li>
+        <li class="keyboard__item">
+          <button class="keyboard__button" type="button">э</button>
+        </li>
+        <li class="keyboard__item">
+          <button class="keyboard__button" type="button">ё</button>
+        </li>
+      </ul>
+
+      <ul class="keyboard__row">
+        <li class="keyboard__item">
+          <button class="keyboard__button keyboard__button-check " type="button" aria-label="Подтвердить"></button>
+        </li>
+        <li class="keyboard__item">
+          <button class="keyboard__button" type="button">я</button>
+        </li>
+        <li class="keyboard__item">
+          <button class="keyboard__button" type="button">ч</button>
+        </li>
+        <li class="keyboard__item">
+          <button class="keyboard__button" type="button">с</button>
+        </li>
+        <li class="keyboard__item">
+          <button class="keyboard__button" type="button">м</button>
+        </li>
+        <li class="keyboard__item">
+          <button class="keyboard__button" type="button">и</button>
+        </li>
+        <li class="keyboard__item">
+          <button class="keyboard__button" type="button">т</button>
+        </li>
+        <li class="keyboard__item">
+          <button class="keyboard__button" type="button">ь</button>
+        </li>
+        <li class="keyboard__item">
+          <button class="keyboard__button" type="button">б</button>
+        </li>
+        <li class="keyboard__item">
+          <button class="keyboard__button " type="button">ю</button>
+        </li>
+        <li class="keyboard__item">
+          <button class="keyboard__button keyboard__button-delete" type="button" aria-label="Удалить"></button>
+        </li>
+      </ul>
+    </article>
+  </main>
+
+  <script type="module" src="./main.js"></script>
+</body>
+
+</html>

@@ -118,6 +118,10 @@
   color: #fff;
 }
 
+.game-board__input:disabled {
+  border: 5px solid #474747;
+}
+
 /* Клавиатура */
 .keyboard {
   display: flex;

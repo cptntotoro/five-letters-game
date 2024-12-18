@@ -47,13 +47,8 @@ checkButton.addEventListener('click', () => {
     return;
   }
 
-  console.log({
-    currentRowIndex,
-    inputRowsLength: inputRows.length - 1
-  })
-
   if (currentRowIndex === inputRows.length - 1) {
-    gameResultShow(true, false); // Показываем экран проигрыша
+    gameResultShow(true, false); 
     console.log('проебал');
     return;
   }

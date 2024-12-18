@@ -8,11 +8,11 @@ export const gameResultShow = (isVisible, isWin) => {
   const gameResultButton = gameResult.querySelector('.game-result__button');
 
   if (!isWin) {
-    gameResultText.textContent = 'Следующий уровень?';
+    gameResultText.textContent = 'Проигрыш';
     gameResultButton.textContent = 'Попробовать снова?';
   } else {
     gameResultText.textContent = 'Победа'
-    gameResultButton.textContent = 'Попробовать снова?'
+    gameResultButton.textContent = 'Начать заново'
   }
 
   gameBoard.classList.toggle('hidden', isVisible);

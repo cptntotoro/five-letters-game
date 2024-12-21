@@ -16,6 +16,6 @@ export const getWord = async () => {
     }
 
   } catch (error) {
-    console.log(error, ' Произошла ошибка сервера. Попробуйте позже');
+    console.log(error, ' Произошла ошибка сервера. Перезагрузите страницу');
   }
 }

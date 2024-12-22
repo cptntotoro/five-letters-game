@@ -1,4 +1,4 @@
-import { getWord } from './scripts/api/getWord.js';
+import { getWord, allGuessedWordMessage } from './scripts/api/getWord.js';
 import { createBoard } from './scripts/game-board/create-board.js';
 import { renderLoading } from './scripts/game-board/loader.js';
 import { showGameResult, hideGameResult } from './scripts/game-board/game-result.js';
@@ -99,13 +99,13 @@ const startNextLevel = async () => {
   try {
     hideGameResult();
 
-    // renderLoading(true)
-    // const wordResponse = await getWord();
-    const wordResponse = { word: 'собак' };
-    // toggleLoader(false);
+    renderLoading(true);
+    const wordResponse = await getWord();
+    renderLoading(false);
+
+    if (wordResponse === allGuessedWordMessage) return;
 
     if (wordResponse && wordResponse.word) {
-      // targetWord = wordResponse.word.toLowerCase();
       targetWord = wordResponse.word.toLowerCase();
 
       console.log(`Новое загаданное слово: ${targetWord}`);
@@ -123,8 +123,6 @@ const startNextLevel = async () => {
 const handleCheckButtonClick = () => {
   const currentInputs = document.querySelectorAll(`.game-board__row:nth-child(${currentRow + 1}) .game-board__input`);
   const enteredWord = Array.from(currentInputs).map(input => input.value).join('').toLowerCase();
-
-  console.log(`Введённое слово: ${enteredWord}`);
 
   // Деактивируем текущую строку и кнопку
   currentInputs.forEach(input => input.setAttribute('disabled', 'true'));
@@ -161,9 +159,10 @@ const initializeGame = async () => {
 
   try {
     renderLoading(true);
-    // const responseData = await getWord();
-    const responseData = {word: 'котёл'};
+    const responseData = await getWord();
     renderLoading(false);
+
+    if (responseData === allGuessedWordMessage) return;
 
     if (responseData && responseData.word) {
       targetWord = responseData.word.toLowerCase();
@@ -188,9 +187,6 @@ function resetGame() {
   // Очистка игрового поля
   document.querySelector('.game-board').innerHTML = '';
 
-  // Скрытие экрана результата
   hideGameResult();
-
-  // Переинициализация игры
   initializeGame();
 };

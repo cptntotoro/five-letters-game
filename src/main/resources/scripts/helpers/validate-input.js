@@ -1,5 +1,5 @@
 // Функция валидации инпутов
-const regex = /[^А-Яа-яЁё]$/;
+const regex = /[^А-Яа-я]$/;
 
 export const validateInput = (inputs, checkRowCompletionFunc) => {
   inputs.forEach((input) => {

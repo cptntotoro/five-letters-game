@@ -1,5 +1,7 @@
 import { config } from './config.js';
 
+export const allGuessedWordMessage = 'Поздравляем, вы отгадали все слова!';
+
 export const getWord = async () => {
   const { BASE_URL, METHOD, STATUSES, headers } = config;
 
@@ -12,7 +14,8 @@ export const getWord = async () => {
     if (response.status === STATUSES.OK) {
       return response.json();
     } else if (response.status === STATUSES.NO_CONTENT) {
-      console.log('Поздравляем, вы отгадали все слова!');
+      alert(allGuessedWordMessage)
+      return allGuessedWordMessage;
     }
 
   } catch (error) {

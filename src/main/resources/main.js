@@ -1,5 +1,5 @@
 // api
-import { getWord, allGuessedWordMessage } from './scripts/api/getWord.js';
+import { getWord, allGuessedWordMessage } from './scripts/api/get-word.js';
 // gameBoard
 import { createBoard } from './scripts/game-board/create-board.js';
 import { renderLoading } from './scripts/game-board/loader.js';
@@ -7,6 +7,8 @@ import { showGameResult, hideGameResult } from './scripts/game-board/game-result
 // helpers
 import { validateInput } from './scripts/helpers/validate-input.js';
 import { checkRowCompletion } from './scripts/helpers/check-row-completion.js';
+import { getEncryptedWord } from './scripts/helpers/get-encrypted-word.js';
+import { getDecryptedWord } from './scripts/api/get-decrypted-word.js';
 
 // Элементы для отображения ошибок
 const hintErrorServer = document.querySelector('.hint-error__server');
@@ -51,7 +53,6 @@ const applyColorsToRow = (inputs, letterStates) => {
   });
 };
 
-
 // Функция блокировки всех строк, кроме текущей
 const lockRows = () => {
   const rows = document.querySelectorAll('.game-board__row');
@@ -76,8 +77,7 @@ const startNextLevel = async () => {
     hideGameResult();
 
     renderLoading(true);
-    // const wordResponse = await getWord();
-    const wordResponse = {word: 'ковёр'};
+    const wordResponse = await getWord();
     renderLoading(false);
 
     if (wordResponse === allGuessedWordMessage) return;
@@ -133,11 +133,16 @@ checkButton.addEventListener('click', handleCheckButtonClick);
 // Функция инициализации игры
 const initializeGame = async () => {
   createBoard();
+  let responseData = null;
 
   try {
     renderLoading(true);
-    // const responseData = await getWord();
-    const responseData = {word: 'ковёр'};
+    if (window.location.pathname.includes('share')) {
+      const encryptedWord = getEncryptedWord();
+      responseData = await getDecryptedWord(encryptedWord);
+    } else {
+      responseData = await getWord();
+    }
     renderLoading(false);
 
     if (responseData === allGuessedWordMessage) return;

@@ -1,12 +1,12 @@
 import { config } from './config.js';
 
-export const getLinkHiddenWord = async (word) => {
+export const getDecryptedWord = async (decryptedWord) => {
   const { BASE_URL, METHOD, STATUSES, headers } = config;
 
   try {
-    const response = await fetch(`${BASE_URL}/link/${word}`, {
-      method: METHOD.GET,
-      headers
+    const response = await fetch(`${BASE_URL}/word?secret=${decryptedWord}`, {
+      method: METHOD.POST,
+      headers,
     });
 
     if (response.status === STATUSES.OK) {
@@ -14,6 +14,7 @@ export const getLinkHiddenWord = async (word) => {
     }
 
   } catch (error) {
+    alert('Запрос на получение расшифрованного слова не удался')
     console.log(error, ' Произошла ошибка сервера. Попробуйте позже');
   }
 }

@@ -1,19 +1,16 @@
 import { getWord } from './scripts/api/getWord.js';
 import { createBoard } from './scripts/game-board/create-board.js';
 import { renderLoading } from './scripts/game-board/loader.js';
-import { showGameResult } from './scripts/game-board/game-result.js';
+import { showGameResult, hideGameResult } from './scripts/game-board/game-result.js';
 
 // Элементы для отображения ошибок
 const hintErrorServer = document.querySelector('.hint-error__server');
 // кнопка проверки угаданного слова
 const checkButton = document.querySelector('.keyboard__button-check');
 
-
-
 // Глобальное состояние приложения
 let targetWord = '';
 let currentRow = 0;
-
 
 // Функция получения списков букв
 const getLetterStates = (enteredWord, targetWord) => {
@@ -100,22 +97,18 @@ const lockRows = () => {
 // Функция запуска следующего уровня
 const startNextLevel = async () => {
   try {
+    hideGameResult();
+
     // renderLoading(true)
-    const wordResponse = await getWord();
+    // const wordResponse = await getWord();
+    const wordResponse = { word: 'собак' };
     // toggleLoader(false);
 
     if (wordResponse && wordResponse.word) {
+      // targetWord = wordResponse.word.toLowerCase();
       targetWord = wordResponse.word.toLowerCase();
 
-      if (targetWord.length !== 5) {
-        throw new Error('Получено слово неправильной длины');
-      }
-
       console.log(`Новое загаданное слово: ${targetWord}`);
-
-      // Сбрасываем состояние и продолжаем игру
-      currentRow = 0;
-      createBoard();
       lockRows();
     } else {
       throw new Error('Слово не получено от сервера');
@@ -147,11 +140,12 @@ const handleCheckButtonClick = () => {
   // Проверяем результат
   if (enteredWord === targetWord) {
     const rowsRemaining = document.querySelectorAll('.game-board__row').length - (currentRow + 1);
-    showGameResult(true, rowsRemaining > 0, startNextLevel);
+    showGameResult(true, rowsRemaining > 0, startNextLevel, resetGame);
+    currentRow++;
   } else {
     currentRow++;
     if (currentRow >= document.querySelectorAll('.game-board__row').length) {
-      showGameResult(false, false, startNextLevel);
+      showGameResult(false, false, startNextLevel, resetGame);
     } else {
       lockRows();
     }
@@ -186,3 +180,17 @@ const initializeGame = async () => {
 
 initializeGame();
 
+function resetGame() {
+  // Сброс глобальных переменных
+  targetWord = '';
+  currentRow = 0;
+
+  // Очистка игрового поля
+  document.querySelector('.game-board').innerHTML = '';
+
+  // Скрытие экрана результата
+  hideGameResult();
+
+  // Переинициализация игры
+  initializeGame();
+};

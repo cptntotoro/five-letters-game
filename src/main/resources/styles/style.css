@@ -79,6 +79,16 @@
   filter: drop-shadow(0 0 0 currentColor);
 }
 
+.aside__toolbar-button-link-disabled {
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+.aside__toolbar-button-link-enabled {
+  opacity: 1;
+  pointer-events: all;
+}
+
 /* Игровое поле */
 .game-board {
   display: flex;

@@ -1,12 +1,17 @@
+// api
 import { getWord, allGuessedWordMessage } from './scripts/api/getWord.js';
+// gameBoard
 import { createBoard } from './scripts/game-board/create-board.js';
 import { renderLoading } from './scripts/game-board/loader.js';
 import { showGameResult, hideGameResult } from './scripts/game-board/game-result.js';
+// helpers
+import { validateInput } from './scripts/helpers/validate-input.js';
+import { checkRowCompletion } from './scripts/helpers/check-row-completion.js';
 
 // Элементы для отображения ошибок
 const hintErrorServer = document.querySelector('.hint-error__server');
 // кнопка проверки угаданного слова
-const checkButton = document.querySelector('.keyboard__button-check');
+export const checkButton = document.querySelector('.keyboard__button-check');
 
 // Глобальное состояние приложения
 let targetWord = '';
@@ -46,35 +51,6 @@ const applyColorsToRow = (inputs, letterStates) => {
   });
 };
 
-// Функция проверки заполненности строки
-const checkRowCompletion = (inputs) => {
-  const isRowComplete = Array.from(inputs).every(input => input.value.trim() !== '');
-  if (isRowComplete) {
-    checkButton.classList.remove('keyboard__button-check-disabled');
-    checkButton.classList.add('keyboard__button-check-enabled');
-  } else {
-    checkButton.classList.add('keyboard__button-check-disabled');
-    checkButton.classList.remove('keyboard__button-check-enabled');
-  }
-};
-
-// Функция валидации инпутов
-const regex = /[^А-Яа-яЁё]$/;
-
-const validateInput = (inputs) => {
-  inputs.forEach((input) => {
-    input.addEventListener('input', (event) => {
-      const value = event.target.value;
-
-      if (regex.test(value)) {
-        event.target.value = '';
-      }
-
-      checkRowCompletion(inputs);
-    });
-  });
-};
-
 
 // Функция блокировки всех строк, кроме текущей
 const lockRows = () => {
@@ -89,7 +65,7 @@ const lockRows = () => {
       }
     });
     if (index === currentRow) {
-      validateInput(Array.from(inputs));
+      validateInput(Array.from(inputs), checkRowCompletion);
     }
   });
 };
@@ -100,7 +76,8 @@ const startNextLevel = async () => {
     hideGameResult();
 
     renderLoading(true);
-    const wordResponse = await getWord();
+    // const wordResponse = await getWord();
+    const wordResponse = {word: 'ковёр'};
     renderLoading(false);
 
     if (wordResponse === allGuessedWordMessage) return;
@@ -159,7 +136,8 @@ const initializeGame = async () => {
 
   try {
     renderLoading(true);
-    const responseData = await getWord();
+    // const responseData = await getWord();
+    const responseData = {word: 'ковёр'};
     renderLoading(false);
 
     if (responseData === allGuessedWordMessage) return;

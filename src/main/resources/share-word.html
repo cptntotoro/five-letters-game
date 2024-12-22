@@ -21,7 +21,6 @@
   <link rel="stylesheet" href="./styles/overlays.css" />
   <link rel="stylesheet" href="./styles/media.css" />
   <link rel="stylesheet" href="./styles/share-world.css">
-  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
 </head>
 
 <body class="page">
@@ -38,25 +37,12 @@
 
       <!-- Панель кнопок -->
       <aside class="aside__toolbar ">
-        <button class="aside__toolbar-button aside__toolbar-button-gift" type="button"
-          aria-label="Загадать слово другу">
-          <svg viewBox="0 0 46 46" aria-hidden="true">
-            <use href="./images/contact-book.svg#icon-contact-book"></use>
-          </svg>
-          <span class="visually-hidden">Загадать слово другу</span>
-        </button>
         <button class="aside__toolbar-button aside__toolbar-button-info" type="button" aria-label="Информация об игре"
           popovertarget="popup__info">
           <svg viewBox="0 0 46 46" aria-hidden="true">
             <use href="./images/info.svg#icon-info"></use>
           </svg>
           <span class="visually-hidden">Информация об игре</span>
-        </button>
-        <button class="aside__toolbar-button aside__toolbar-button-settings" type="button" aria-label="Настройки">
-          <svg viewBox="0 0 46 46" aria-hidden="true">
-            <use href="./images/settings.svg#icon-settings"></use>
-          </svg>
-          <span class="visually-hidden">Настройки</span>
         </button>
         <button class="aside__toolbar-button aside__toolbar-button-link" type="button"
           aria-label="Поделиться ссылкой на игру" popovertarget="toast__link">
@@ -79,9 +65,13 @@
 
       <!-- Попап с правилами игры  -->
       <div class="popup" id="popup__info" popover>
-        <p class="popup__text">Необходимо угадать загаданное слово за 6 попыток.<br>
-          Зелёный цвет - буква угадана и стоит на правильном месте<br>
-          Белый цвет - буква угадана, но стоит не в том месте </p>
+        <p class="popup__text">
+          Необходимо загадать слово для друга.
+          <br>
+          Оно должно состоять из 5 букв.
+          <br>
+          После нажмите на иконку ссылки и отправьте другу!
+        </p>
       </div>
 
       <!-- Временный тост  -->
@@ -95,7 +85,25 @@
       </div>
 
       <!-- Игровое поле -->
-      <section class="game-board" data-columns="5" data-rows="1"></section>
+      <section class="game-board" data-columns="5" data-rows="1">
+        <ul class="game-board__row">
+          <li class="game-board__cell"/>
+            <input class="game-board__input" maxlength="1" aria-label="Введите букву">
+          </li>
+        <li class="game-board__cell">
+          <input class="game-board__input" maxlength="1" aria-label="Введите букву">
+        </li>
+        <li class="game-board__cell">
+          <input class="game-board__input" maxlength="1" aria-label="Введите букву">
+        </li>
+        <li class="game-board__cell">
+          <input class="game-board__input" maxlength="1" aria-label="Введите букву">
+        </li>
+        <li class="game-board__cell">
+          <input class="game-board__input" maxlength="1" aria-label="Введите букву">
+        </li>
+      </ul>
+      </section>
     </div>
 
     <!-- Клавиатура -->
@@ -217,7 +225,7 @@
     </article>
   </main>
 
-  <script type="module" src="./main.js"></script>
+  <script type="module" src="./share-word.js"></script>
 </body>
 
 </html>

@@ -18,7 +18,7 @@
 							"});\r",
 							"pm.test(\"Has HTML response\", function () {\r",
 							"    pm.response.to.be.withBody;\r",
-							"    pm.response.to.be.header(\"Content-Type\", \"text/html\");\r",
+							"    pm.response.to.be.header(\"Content-Type\", \"text/html;charset=UTF-8\");\r",
 							"});\r",
 							"pm.test(\"Response time is less than 200ms\", function () {\r",
 							"  pm.expect(pm.response.responseTime).to.be.below(200);\r",

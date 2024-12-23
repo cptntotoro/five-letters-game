@@ -8,12 +8,17 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class PageController {
 
     @GetMapping("")
-    public String getHomepage() {
+    public String getHomePage() {
         return "index.html";
     }
 
+    @GetMapping("/share-word")
+    public String getShareWordPage() {
+        return "share-word.html";
+    }
+
     @GetMapping("/share")
-    public String getHomepageByShareLink(@RequestParam(value = "secret") String encryption) {
+    public String getHomePageByShareLink(@RequestParam(value = "secret") String encryption) {
         return "index.html";
     }
 }

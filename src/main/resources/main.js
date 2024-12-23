@@ -172,4 +172,4 @@ function resetGame() {
 
   hideGameResult();
   initializeGame();
-};
+}

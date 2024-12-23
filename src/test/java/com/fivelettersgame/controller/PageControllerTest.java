@@ -17,8 +17,25 @@ public class PageControllerTest {
     private MockMvc mockMvc;
 
     @Test
-    void getHomepage_shouldReturnStatusOk() throws Exception {
+    void getHomePage_shouldReturnStatusOk() throws Exception {
         mockMvc.perform(get("")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .accept(MediaType.TEXT_HTML))
+                .andExpect(status().isOk());
+    }
+
+    @Test
+    void getShareWordPage_shouldReturnStatusOk() throws Exception {
+        mockMvc.perform(get("/share-word")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .accept(MediaType.TEXT_HTML))
+                .andExpect(status().isOk());
+    }
+
+    @Test
+    void getHomePageByShareLink_shouldReturnStatusOk() throws Exception {
+        mockMvc.perform(get("/share")
+                        .queryParam("secret", "bbqrp")
                         .contentType(MediaType.APPLICATION_JSON)
                         .accept(MediaType.TEXT_HTML))
                 .andExpect(status().isOk());

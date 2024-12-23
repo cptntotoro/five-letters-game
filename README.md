@@ -14,7 +14,7 @@
 ### 🖼 **Фронтенд (Вёрстка)** - [@SonnikD](https://github.com/SonnikD)
 Результат Google Lighthouse
 
-<img src="https://github.com/user-attachments/assets/d4d27c16-2bf1-4dca-91a0-8c7722c4dc89" style="width: 500px;">
+<img src="https://github.com/user-attachments/assets/fdd546cc-bff5-45f1-89e2-1a51ace6a21b" style="width: 500px;">
 
 ### 👨‍💻 **Фронтенд (JS с опытом)** - [@kuliznikovjeka](https://github.com/kuliznikovjeka)
 

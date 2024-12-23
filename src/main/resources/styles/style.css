@@ -239,6 +239,20 @@
   border: 2px solid var(--error-color);
 }
 
+.keyboard-correct {
+  background-color: var(--accent-color);
+}
+
+.keyboard-almost {
+  background-color: var(--disabled-color);
+}
+
+.keyboard-incorrect {
+  background-color: var(--disabled-color);
+  color: var(--hint-color);
+}
+
+
 /* Лоадер  */
 .loader__container {
   display: flex;

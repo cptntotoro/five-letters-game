@@ -71,6 +71,6 @@
 
   .aside__toolbar {
     padding-inline-end: 0;
-    gap: 0px;
+    gap: 0;
   }
 }

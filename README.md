@@ -24,3 +24,5 @@
 [Ссылка на Postman коллекцию](https://github.com/cptntotoro/five-letters-game/blob/main/postman-collection.json)
 
 [Ссылка на Swagger](https://github.com/cptntotoro/five-letters-game/blob/main/swagger-api.yaml)
+
+[Ссылка на ПР с валидацией ввода на фронтенде через API Яндекс.Словаря + GIF](https://github.com/cptntotoro/five-letters-game/pull/45) 

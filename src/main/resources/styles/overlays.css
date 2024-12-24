@@ -9,6 +9,7 @@
   border-radius: 10px;
   grid-area: hint-error;
   padding-inline-start: 10px;
+  padding-inline-end: 10px;
   padding-block: 8px 13px;
   transition: visibility 0s, opacity 0.4s ease;
 }
